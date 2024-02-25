@@ -3,7 +3,7 @@ import { Statistics } from 'components/Statistics/Statistics';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { SectionTitle } from 'components/Section-Title/SectionTitle';
 import { Notification } from 'components/Notification/Notification';
-import { Container ,Button } from './App.styled';
+import { Container, Button } from './App.styled';
 class App extends Component {
   state = {
     good: 0,
@@ -38,12 +38,12 @@ class App extends Component {
     const totalFeedback = this.countTotalFeedback();
     return (
       <Container>
-        <SectionTitle style={{fontSize: '30px'}} title="Please leave feedback">
+        <SectionTitle title="Please leave feedback">
           <FeedbackOptions option={this.createBtns()} />
         </SectionTitle>
         <SectionTitle title="Statistics">
           {!totalFeedback ? (
-            <Notification style={{fontSize: '20px' ,marginTop: '20px'}} message="There is no feedback" />
+            <Notification message="There is no feedback" />
           ) : (
             <Statistics
               stateAll={this.state}
