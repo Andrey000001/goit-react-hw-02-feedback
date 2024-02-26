@@ -3,7 +3,7 @@ import { Statistics } from 'components/Statistics/Statistics';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { SectionTitle } from 'components/Section-Title/SectionTitle';
 import { Notification } from 'components/Notification/Notification';
-import { Container, Button } from './App.styled';
+import { Container } from './App.styled';
 class App extends Component {
   state = {
     good: 0,
@@ -14,13 +14,6 @@ class App extends Component {
     this.setState(prevState => ({
       [button]: prevState[button] + 1,
     }));
-  };
-
-  createBtns = () => {
-    const buttons = Object.keys(this.state).map(button => (
-      <Button onClick={() => this.handleClick(button)}>{button}</Button>
-    ));
-    return buttons;
   };
 
   countTotalFeedback = () => {
@@ -35,18 +28,24 @@ class App extends Component {
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
     const totalFeedback = this.countTotalFeedback();
     return (
       <Container>
         <SectionTitle title="Please leave feedback">
-          <FeedbackOptions option={this.createBtns()} />
+          <FeedbackOptions
+            option={['good', 'neutral', 'bad']}
+            handleClick={this.handleClick}
+          />
         </SectionTitle>
         <SectionTitle title="Statistics">
           {!totalFeedback ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
-              stateAll={this.state}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />

@@ -1,17 +1,20 @@
 import { List, Total, Positive } from './Statistics.styled';
-export const Statistics = ({ stateAll, total, positivePercentage }) => {
+export const Statistics = ({
+  good,
+  neutral,
+  bad,
+  total,
+  positivePercentage,
+}) => {
   return (
     <div>
       <List>
-        {Object.entries(stateAll).map(([key, values], index) => (
-          <li key={index}>
-            <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span> :{' '}
-            <span>{values}</span>
-          </li>
-        ))}
+        <li>Good: {good}</li>
+        <li>Neutral: {neutral}</li>
+        <li>Bad: {bad}</li>
+        <Total>Total: {total}</Total>
+        <Positive>Positeve feedback: {positivePercentage}%</Positive>
       </List>
-      <Total>Total : {total}</Total>
-      <Positive>Positeve feedback: {positivePercentage}%</Positive>
     </div>
   );
 };
